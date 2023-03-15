@@ -6,19 +6,21 @@ import com.jonatlop.server.core.domain.exception.UserWithEmailAlreadyExistsExcep
 import com.jonatlop.server.core.domain.mapper.UserMapper;
 import com.jonatlop.server.core.domain.persistence_dto.UserPersistenceDTO;
 import com.jonatlop.server.core.domain.query_dto.UserQueryDTO;
-import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.security.SecureRandom;
 
+import lombok.AllArgsConstructor;
+
 @AllArgsConstructor
-public class UserRegisterService implements UserRegisterInteractor {
+public final class UserRegisterService implements UserRegisterInteractor {
     private final UserRegisterPersistenceGateway gateway;
     
     @Override
     public UserRegisterOutputModel execute(UserRegisterInputModel input) {
         final User user = UserMapper.toEntity(input);
-        if (userCredentialsHaveValidFormat(user, input.passwordFormatRegex())) {
+        if (userCredentialsHaveValidFormat(user, input.getPasswordFormatRegexp())) {
             throw new UserInvalidCredentialsFormatException();
         }
         if (existsUserWithEmail(user)) {
@@ -37,18 +39,12 @@ public class UserRegisterService implements UserRegisterInteractor {
     }
     
     private boolean existsUserWithEmail(User user) {
-        return this.gateway
-            .exists(
-                UserQueryDTO
-                    .builder()
-                    .email(user.getEmail())
-                    .build()
-            );
+        return this.gateway.exists(new UserQueryDTO(user.getEmail()));
     }
     
     private String hashPassword(String password) {
         final int STRENGTH = 10;
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(STRENGTH, new SecureRandom());
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(STRENGTH, new SecureRandom());
         return passwordEncoder.encode(password);
     }
     
@@ -59,10 +55,10 @@ public class UserRegisterService implements UserRegisterInteractor {
     private UserRegisterOutputModel toOutputModel(UserPersistenceDTO dto) {
         return UserRegisterOutputModel
             .builder()
-            .id(dto.id())
-            .created(dto.created())
-            .modified(dto.modified())
-            .lastLogin(dto.lastLogin())
+            .id(dto.getId())
+            .created(dto.getCreated())
+            .modified(dto.getModified())
+            .lastLogin(dto.getLastLogin())
             .isActive(dto.isActive())
             .build();
     }

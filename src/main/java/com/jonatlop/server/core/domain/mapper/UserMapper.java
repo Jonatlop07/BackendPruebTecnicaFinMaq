@@ -4,15 +4,17 @@ import com.jonatlop.server.core.domain.persistence_dto.UserPersistenceDTO;
 import com.jonatlop.server.core.application.user_register.UserRegisterInputModel;
 import com.jonatlop.server.core.domain.entity.User;
 
-public class UserMapper {
+public final class UserMapper {
+    private UserMapper() {}
+    
     public static User toEntity( UserRegisterInputModel input) {
         return User
             .builder()
             .id()
-            .name(input.name())
-            .email(input.email())
-            .password(input.password())
-            .phones(input.phones())
+            .name(input.getName())
+            .email(input.getEmail())
+            .password(input.getPassword())
+            .phones(input.getPhones())
             .build();
     }
     

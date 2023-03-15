@@ -1,5 +1,6 @@
 package com.jonatlop.server.core.domain.entity;
 
+import com.jonatlop.server.core.abstraction.exception.RequiredFieldsNotSetException;
 import lombok.Getter;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class User {
     private final String password;
     private final List<String> phones;
     
-    private User( UserBuilder builder) {
+    private User(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.email = builder.email;
@@ -37,7 +38,7 @@ public class User {
     }
     
     public static Id builder() {
-        return new UserBuilder();
+        return new Builder();
     }
     
     public interface Id {
@@ -64,7 +65,7 @@ public class User {
         User build();
     }
     
-    private static class UserBuilder implements Build, Id, Name, Email, Password, Phones {
+    public static class Builder implements Build, Id, Name, Email, Password, Phones {
         private UUID id;
         private String name;
         private String email;
@@ -103,6 +104,9 @@ public class User {
     
         @Override
         public User build() {
+            if (id == null || name == null || email == null || password == null || phones == null) {
+                throw new RequiredFieldsNotSetException();
+            }
             return new User(this);
         }
     }
