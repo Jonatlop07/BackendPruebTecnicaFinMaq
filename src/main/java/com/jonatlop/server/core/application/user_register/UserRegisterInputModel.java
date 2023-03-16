@@ -1,6 +1,7 @@
 package com.jonatlop.server.core.application.user_register;
 
 import com.jonatlop.server.core.abstraction.exception.RequiredFieldsNotSetException;
+import com.jonatlop.server.core.domain.persistence_dto.PhonePersistenceDTO;
 import lombok.Getter;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class UserRegisterInputModel {
     private final String name;
     private final String email;
     private final String password;
-    private final List<String> phones;
+    private final List<PhonePersistenceDTO> phones;
     private final String passwordFormatRegexp;
     
     private UserRegisterInputModel(Builder builder) {
@@ -39,7 +40,7 @@ public class UserRegisterInputModel {
     }
     
     public interface RequiredPhones {
-        RequiredPasswordFormatRegexp phones(List<String> phones);
+        RequiredPasswordFormatRegexp phones(List<PhonePersistenceDTO> phones);
     }
     
     public interface RequiredPasswordFormatRegexp {
@@ -54,7 +55,7 @@ public class UserRegisterInputModel {
         private String name;
         private String email;
         private String password;
-        private List<String> phones;
+        private List<PhonePersistenceDTO> phones;
         private String passwordFormatRegexp;
         
         private Builder() {}
@@ -78,7 +79,7 @@ public class UserRegisterInputModel {
         }
         
         @Override
-        public RequiredPasswordFormatRegexp phones(List<String> phones) {
+        public RequiredPasswordFormatRegexp phones(List<PhonePersistenceDTO> phones) {
             this.phones = phones;
             return this;
         }

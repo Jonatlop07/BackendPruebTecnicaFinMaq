@@ -2,7 +2,6 @@ package com.jonatlop.server.core.domain.persistence_dto;
 
 import com.jonatlop.server.core.abstraction.exception.RequiredFieldsNotSetException;
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.time.Instant;
 import java.util.List;
@@ -14,7 +13,7 @@ public class UserPersistenceDTO {
     private final String name;
     private final String email;
     private final String password;
-    private final List<String> phones;
+    private final List<PhonePersistenceDTO> phones;
     private final Instant created;
     private final Instant modified;
     private final Instant lastLogin;
@@ -53,7 +52,7 @@ public class UserPersistenceDTO {
     }
     
     public interface Phones {
-        Build phones(List<String> phones);
+        Build phones(List<PhonePersistenceDTO> phones);
     }
     
     public interface Build {
@@ -69,7 +68,7 @@ public class UserPersistenceDTO {
         private String name;
         private String email;
         private String password;
-        private List<String> phones;
+        private List<PhonePersistenceDTO> phones;
         private Instant created;
         private Instant modified;
         private Instant lastLogin;
@@ -102,7 +101,7 @@ public class UserPersistenceDTO {
         }
         
         @Override
-        public Build phones(List<String> phones) {
+        public Build phones(List<PhonePersistenceDTO> phones) {
             this.phones = phones;
             return this;
         }

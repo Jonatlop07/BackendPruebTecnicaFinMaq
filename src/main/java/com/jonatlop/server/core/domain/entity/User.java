@@ -13,7 +13,7 @@ public class User {
     private final String name;
     private final String email;
     private final String password;
-    private final List<String> phones;
+    private final List<Phone> phones;
     
     private User(Builder builder) {
         this.id = builder.id;
@@ -58,7 +58,7 @@ public class User {
     }
     
     public interface Phones {
-        Build phones(List<String> phones);
+        Build phones(List<Phone> phones);
     }
     
     public interface Build {
@@ -70,7 +70,7 @@ public class User {
         private String name;
         private String email;
         private String password;
-        private List<String> phones;
+        private List<Phone> phones;
     
         @Override
         public Name id() {
@@ -97,7 +97,7 @@ public class User {
         }
     
         @Override
-        public Build phones(List<String> phones) {
+        public Build phones(List<Phone> phones) {
             this.phones = phones;
             return this;
         }
