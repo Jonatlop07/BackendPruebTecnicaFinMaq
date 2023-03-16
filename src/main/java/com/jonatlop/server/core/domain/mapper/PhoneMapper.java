@@ -7,10 +7,22 @@ public final class PhoneMapper {
     private PhoneMapper() {}
     
     public static Phone toEntity(PhonePersistenceDTO dto) {
-        return new Phone(dto.getNumber(), dto.getCityCode(), dto.getCountryCode());
+        return Phone
+            .builder()
+            .id(dto.getId())
+            .number(dto.getNumber())
+            .cityCode(dto.getCityCode())
+            .countryCode(dto.getCountryCode())
+            .build();
     }
     
     public static PhonePersistenceDTO toPersistenceDTO(Phone phone) {
-        return new PhonePersistenceDTO(phone.getNumber(), phone.getCityCode(), phone.getCountryCode());
+        return PhonePersistenceDTO
+            .builder()
+            .id(phone.getId())
+            .number(phone.getNumber())
+            .cityCode(phone.getCityCode())
+            .countryCode(phone.getCountryCode())
+            .build();
     }
 }

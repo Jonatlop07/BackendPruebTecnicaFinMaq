@@ -1,16 +1,22 @@
 package com.jonatlop.server.core.domain.entity;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
+
+import java.util.UUID;
 
 @Getter
+@Builder
 public class Phone {
-    private final String number;
-    private final String cityCode;
-    private final String countryCode;
+    private final UUID id;
     
-    public Phone(String number, String cityCode, String countryCode) {
-        this.number = number;
-        this.cityCode = cityCode;
-        this.countryCode = countryCode;
-    }
+    @NonNull
+    private final String number;
+    
+    @NonNull
+    private final String cityCode;
+    
+    @NonNull
+    private final String countryCode;
 }

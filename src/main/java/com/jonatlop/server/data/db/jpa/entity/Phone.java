@@ -1,14 +1,15 @@
 package com.jonatlop.server.data.db.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "phones")
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder(toBuilder = true)
 @Getter
 public class Phone {
     
@@ -28,6 +29,4 @@ public class Phone {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-    
-    protected Phone () {}
 }
