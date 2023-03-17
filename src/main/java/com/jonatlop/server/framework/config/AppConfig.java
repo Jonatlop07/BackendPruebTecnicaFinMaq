@@ -1,5 +1,8 @@
 package com.jonatlop.server.framework.config;
 
+import com.jonatlop.server.core.application.user_query.UserQueryInteractor;
+import com.jonatlop.server.core.application.user_query.UserQueryPersistenceGateway;
+import com.jonatlop.server.core.application.user_query.UserQueryService;
 import com.jonatlop.server.core.application.user_register.UserRegisterInteractor;
 import com.jonatlop.server.core.application.user_register.UserRegisterPersistenceGateway;
 import com.jonatlop.server.core.application.user_register.UserRegisterService;
@@ -34,5 +37,10 @@ public class AppConfig {
     @Bean
     public UserUpdateTokenInteractor userUpdateTokenInteractor(UserUpdateTokenPersistenceGateway gateway) {
         return new UserUpdateTokenService(gateway);
+    }
+    
+    @Bean
+    UserQueryInteractor userQueryInteractor(UserQueryPersistenceGateway gateway) {
+        return new UserQueryService(gateway);
     }
 }

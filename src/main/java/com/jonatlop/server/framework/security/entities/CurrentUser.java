@@ -1,6 +1,6 @@
 package com.jonatlop.server.framework.security.entities;
 
-import com.jonatlop.server.core.domain.core_dto.UserCoreDTO;
+import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

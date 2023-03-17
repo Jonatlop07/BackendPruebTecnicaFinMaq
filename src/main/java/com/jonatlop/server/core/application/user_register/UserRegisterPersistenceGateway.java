@@ -1,9 +1,8 @@
 package com.jonatlop.server.core.application.user_register;
 
 import com.jonatlop.server.core.abstraction.persistence.Create;
-import com.jonatlop.server.core.abstraction.persistence.Exists;
-import com.jonatlop.server.core.domain.core_dto.UserCoreDTO;
-import com.jonatlop.server.core.domain.query_dto.UserQueryDTO;
+import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
+import com.jonatlop.server.core.domain.persistence.UserExistsWithEmail;
 
 public interface UserRegisterPersistenceGateway
-    extends Create<UserCoreDTO, UserCoreDTO>, Exists<UserQueryDTO> {}
+    extends Create<UserCoreDTO, UserCoreDTO>, UserExistsWithEmail {}

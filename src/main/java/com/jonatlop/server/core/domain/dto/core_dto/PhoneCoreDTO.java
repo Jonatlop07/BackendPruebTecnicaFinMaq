@@ -1,4 +1,4 @@
-package com.jonatlop.server.core.domain.core_dto;
+package com.jonatlop.server.core.domain.dto.core_dto;
 
 import lombok.Builder;
 import lombok.Getter;

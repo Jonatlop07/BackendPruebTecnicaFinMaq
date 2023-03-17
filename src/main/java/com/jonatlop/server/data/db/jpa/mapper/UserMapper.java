@@ -1,6 +1,7 @@
 package com.jonatlop.server.data.db.jpa.mapper;
 
-import com.jonatlop.server.core.domain.core_dto.UserCoreDTO;
+import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
+import com.jonatlop.server.core.domain.dto.details_dto.UserDetailsDTO;
 import com.jonatlop.server.data.db.jpa.entity.User;
 
 import java.util.stream.Collectors;
@@ -8,7 +9,7 @@ import java.util.stream.Collectors;
 public final class UserMapper {
     private UserMapper() {}
     
-    public static User  toEntity(UserCoreDTO dto) {
+    public static User toEntity(UserCoreDTO dto) {
         return User
             .builder()
             .id(dto.getId())
@@ -30,7 +31,7 @@ public final class UserMapper {
             .build();
     }
     
-    public static UserCoreDTO toPersistenceDTO(User entity) {
+    public static UserCoreDTO toCoreDTO(User entity) {
         return UserCoreDTO
             .builder()
             .id(entity.getId())
@@ -41,7 +42,7 @@ public final class UserMapper {
                 entity
                     .getPhones()
                     .stream()
-                    .map(PhoneMapper::toPersistenceDTO)
+                    .map(PhoneMapper::toCoreDTO)
                     .collect(Collectors.toList())
             )
             .created(entity.getCreated())
@@ -49,6 +50,22 @@ public final class UserMapper {
             .lastLogin(entity.getLastLogin())
             .isActive(entity.isActive())
             .token(entity.getToken())
+            .build();
+    }
+    
+    public static UserDetailsDTO toDetailsDTO(User entity) {
+        return UserDetailsDTO
+            .builder()
+            .id(entity.getId())
+            .name(entity.getName())
+            .email(entity.getEmail())
+            .phones(
+                entity
+                    .getPhones()
+                    .stream()
+                    .map(PhoneMapper::toCoreDTO)
+                    .collect(Collectors.toList())
+            )
             .build();
     }
 }

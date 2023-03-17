@@ -1,7 +1,7 @@
 package com.jonatlop.server.core.application.user_register;
 
 import com.jonatlop.server.core.abstraction.exception.RequiredFieldsNotSetException;
-import com.jonatlop.server.core.domain.core_dto.PhoneCoreDTO;
+import com.jonatlop.server.core.domain.dto.core_dto.PhoneCoreDTO;
 import lombok.Getter;
 
 import java.util.List;

@@ -4,8 +4,7 @@ import com.jonatlop.server.core.domain.entity.User;
 import com.jonatlop.server.core.domain.exception.UserInvalidCredentialsFormatException;
 import com.jonatlop.server.core.domain.exception.UserWithEmailAlreadyExistsException;
 import com.jonatlop.server.core.domain.mapper.UserMapper;
-import com.jonatlop.server.core.domain.core_dto.UserCoreDTO;
-import com.jonatlop.server.core.domain.query_dto.UserQueryDTO;
+import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -23,36 +22,24 @@ public final class UserRegisterService implements UserRegisterInteractor {
         if (userCredentialsHaveValidFormat(user, input.getPasswordFormatRegexp())) {
             throw new UserInvalidCredentialsFormatException();
         }
-        if (existsUserWithEmail(user)) {
+        if (gateway.existsWithEmail(user.getEmail())) {
             throw new UserWithEmailAlreadyExistsException();
         }
         final UserCoreDTO userWithHashedPasswordDTO = UserMapper.toPersistenceDTOWithHashedPassword(
             user,
             hashPassword(user.getPassword())
         );
-        final UserCoreDTO createdUserDTO = persistUser(userWithHashedPasswordDTO);
-        return toOutputModel(createdUserDTO);
+        final UserCoreDTO createdUserDTO = gateway.create(userWithHashedPasswordDTO);
+        return new UserRegisterOutputModel(createdUserDTO);
     }
     
     private boolean userCredentialsHaveValidFormat(User user, String passwordFormatRegex) {
         return user.hasValidEmail() && user.hasValidPassword(passwordFormatRegex);
     }
     
-    private boolean existsUserWithEmail(User user) {
-        return this.gateway.exists(new UserQueryDTO(user.getEmail()));
-    }
-    
     private String hashPassword(String password) {
         final int STRENGTH = 10;
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(STRENGTH, new SecureRandom());
         return passwordEncoder.encode(password);
-    }
-    
-    private UserCoreDTO persistUser( UserCoreDTO newUser) {
-        return this.gateway.create(newUser);
-    }
-    
-    private UserRegisterOutputModel toOutputModel(UserCoreDTO dto) {
-        return new UserRegisterOutputModel(dto);
     }
 }

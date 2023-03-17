@@ -1,4 +1,4 @@
-package com.jonatlop.server.framework.api.http_rest.entities;
+package com.jonatlop.server.framework.api.http_rest.entities.sign_up;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Builder
 @Data
-public class UserDataResponse {
+public class UserRegisteredResponse {
     @NotNull
     @JsonProperty
     UUID id;

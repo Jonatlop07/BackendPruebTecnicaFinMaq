@@ -1,6 +1,6 @@
 package com.jonatlop.server.core.domain.mapper;
 
-import com.jonatlop.server.core.domain.core_dto.UserCoreDTO;
+import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
 import com.jonatlop.server.core.application.user_register.UserRegisterInputModel;
 import com.jonatlop.server.core.domain.entity.User;
 

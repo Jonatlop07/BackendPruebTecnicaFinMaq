@@ -1,26 +1,25 @@
-package com.jonatlop.server.framework.api.http_rest.entities;
+package com.jonatlop.server.framework.api.http_rest.entities.sign_up;
 
 import com.jonatlop.server.core.application.user_register.UserRegisterInputModel;
-import com.jonatlop.server.core.domain.core_dto.PhoneCoreDTO;
+import com.jonatlop.server.framework.api.http_rest.entities.common.PhoneResponse;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Value;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Value
 public class SignUpRequest {
     @NotBlank
-    private final String name;
+    String name;
     
     @NotBlank
-    private final String email;
+    String email;
     
     @NotBlank
-    private final String password;
+    String password;
     
-    private final List<Phone> phones;
+    List<PhoneResponse> phones;
     
     public static UserRegisterInputModel toInputModel(SignUpRequest signUpRequest, String passwordFormatRegexp) {
         return UserRegisterInputModel
@@ -32,27 +31,10 @@ public class SignUpRequest {
                 signUpRequest
                     .getPhones()
                     .stream()
-                    .map(Phone::toDTO)
+                    .map(PhoneResponse::toDTO)
                     .collect(Collectors.toList())
             )
             .passwordFormatRegexp(passwordFormatRegexp)
             .build();
-    }
-    
-    @Value
-    public static class Phone {
-        private final UUID id;
-        private final String number;
-        private final String cityCode;
-        private final String countryCode;
-    
-        public static PhoneCoreDTO toDTO( Phone phone) {
-            return PhoneCoreDTO
-                .builder()
-                .number(phone.getNumber())
-                .cityCode(phone.getCityCode())
-                .countryCode(phone.getCountryCode())
-                .build();
-        }
     }
 }

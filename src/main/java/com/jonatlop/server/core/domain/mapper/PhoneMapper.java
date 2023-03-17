@@ -1,7 +1,7 @@
 package com.jonatlop.server.core.domain.mapper;
 
 import com.jonatlop.server.core.domain.entity.Phone;
-import com.jonatlop.server.core.domain.core_dto.PhoneCoreDTO;
+import com.jonatlop.server.core.domain.dto.core_dto.PhoneCoreDTO;
 
 public final class PhoneMapper {
     private PhoneMapper() {}

@@ -7,7 +7,7 @@ import com.jonatlop.server.core.application.user_register.UserRegisterService;
 import com.jonatlop.server.core.application.user_update_token.UserUpdateTokenInputModel;
 import com.jonatlop.server.core.application.user_update_token.UserUpdateTokenInteractor;
 import com.jonatlop.server.core.application.user_update_token.UserUpdateTokenOutputModel;
-import com.jonatlop.server.core.domain.core_dto.UserCoreDTO;
+import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
 import com.jonatlop.server.framework.security.entities.AuthGenerateTokenInputModel;
 import com.jonatlop.server.framework.security.entities.AuthGenerateTokenOutputModel;
 import com.jonatlop.server.framework.security.entities.CurrentUser;
