@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public abstract class CompoundResponse {
+public class CompoundResponse {
     @NotNull
     @JsonProperty("api_response")
     protected final ApiResponse apiResponse;

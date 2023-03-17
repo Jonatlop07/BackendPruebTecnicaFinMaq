@@ -10,12 +10,13 @@ import org.springframework.http.ResponseEntity;
 
 public final class UserRegisterResponseMapper {
     public static ResponseEntity<SignUpResponse> toResponse( UserRegisterOutputModel outputModel) {
+        final HttpStatus httpStatus = HttpStatus.CREATED;
         final UserCoreDTO createdUser = outputModel.getCreatedUser();
         return ResponseEntity
-            .status(HttpStatus.CREATED)
+            .status(httpStatus)
             .body(
                 new SignUpResponse(
-                    new ApiResponse(true, "Registro exitoso."),
+                    new ApiResponse(true, "Registro exitoso.", httpStatus, httpStatus.value()),
                     UserRegisteredResponse
                         .builder()
                         .id(createdUser.getId())

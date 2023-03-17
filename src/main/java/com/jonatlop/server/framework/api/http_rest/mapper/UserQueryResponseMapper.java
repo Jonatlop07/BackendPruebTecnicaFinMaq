@@ -11,11 +11,12 @@ import java.util.stream.Collectors;
 
 public final class UserQueryResponseMapper {
     public static ResponseEntity<UserQueryResponse> toResponse(UserQueryOutputModel outputModel) {
+        final HttpStatus httpStatus = HttpStatus.OK;
         return ResponseEntity
-            .status(HttpStatus.OK)
+            .status(httpStatus)
             .body(
                 new UserQueryResponse(
-                    new ApiResponse(true, "Consulta exitosa."),
+                    new ApiResponse(true, "Consulta exitosa.", httpStatus, httpStatus.value()),
                     outputModel
                         .getUserById()
                         .map(UserDetailsResponse::from)
