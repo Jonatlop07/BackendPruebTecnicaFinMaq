@@ -1,6 +1,6 @@
 package com.jonatlop.server.data.db.jpa.mapper;
 
-import com.jonatlop.server.core.domain.persistence_dto.UserPersistenceDTO;
+import com.jonatlop.server.core.domain.core_dto.UserCoreDTO;
 import com.jonatlop.server.data.db.jpa.entity.User;
 
 import java.util.stream.Collectors;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public final class UserMapper {
     private UserMapper() {}
     
-    public static User toEntity(UserPersistenceDTO dto) {
+    public static User  toEntity(UserCoreDTO dto) {
         return User
             .builder()
             .id(dto.getId())
@@ -18,6 +18,8 @@ public final class UserMapper {
             .created(dto.getCreated())
             .modified(dto.getModified())
             .lastLogin(dto.getLastLogin())
+            .isActive(dto.isActive())
+            .token(dto.getToken())
             .phones(
                 dto
                     .getPhones()
@@ -28,8 +30,8 @@ public final class UserMapper {
             .build();
     }
     
-    public static UserPersistenceDTO toPersistenceDTO(User entity) {
-        return UserPersistenceDTO
+    public static UserCoreDTO toPersistenceDTO(User entity) {
+        return UserCoreDTO
             .builder()
             .id(entity.getId())
             .name(entity.getName())
@@ -45,6 +47,8 @@ public final class UserMapper {
             .created(entity.getCreated())
             .modified(entity.getModified())
             .lastLogin(entity.getLastLogin())
+            .isActive(entity.isActive())
+            .token(entity.getToken())
             .build();
     }
 }

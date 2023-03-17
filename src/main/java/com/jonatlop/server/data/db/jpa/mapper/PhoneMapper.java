@@ -1,12 +1,12 @@
 package com.jonatlop.server.data.db.jpa.mapper;
 
-import com.jonatlop.server.core.domain.persistence_dto.PhonePersistenceDTO;
+import com.jonatlop.server.core.domain.core_dto.PhoneCoreDTO;
 import com.jonatlop.server.data.db.jpa.entity.Phone;
 
 public final class PhoneMapper {
     private PhoneMapper() {}
     
-    public static Phone toEntity(PhonePersistenceDTO dto) {
+    public static Phone toEntity( PhoneCoreDTO dto) {
         return Phone
             .builder()
             .id(dto.getId())
@@ -16,8 +16,8 @@ public final class PhoneMapper {
             .build();
     }
     
-    public static PhonePersistenceDTO toPersistenceDTO(Phone phone) {
-        return PhonePersistenceDTO
+    public static PhoneCoreDTO toPersistenceDTO( Phone phone) {
+        return PhoneCoreDTO
             .builder()
             .id(phone.getId())
             .number(phone.getNumber())

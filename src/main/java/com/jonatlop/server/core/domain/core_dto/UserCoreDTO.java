@@ -1,4 +1,4 @@
-package com.jonatlop.server.core.domain.persistence_dto;
+package com.jonatlop.server.core.domain.core_dto;
 
 import com.jonatlop.server.core.abstraction.exception.RequiredFieldsNotSetException;
 import lombok.Getter;
@@ -8,18 +8,19 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
-public class UserPersistenceDTO {
+public class UserCoreDTO {
     private final UUID id;
     private final String name;
     private final String email;
     private final String password;
-    private final List<PhonePersistenceDTO> phones;
+    private final List<PhoneCoreDTO> phones;
     private final Instant created;
     private final Instant modified;
     private final Instant lastLogin;
     private final boolean isActive;
+    private final String token;
     
-    private UserPersistenceDTO(Builder builder) {
+    private UserCoreDTO( Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.email = builder.email;
@@ -29,6 +30,7 @@ public class UserPersistenceDTO {
         this.modified = builder.modified;
         this.lastLogin = builder.lastLogin;
         this.isActive = builder.isActive;
+        this.token = builder.token;
     }
     
     public static Builder builder() {
@@ -52,7 +54,7 @@ public class UserPersistenceDTO {
     }
     
     public interface Phones {
-        Build phones(List<PhonePersistenceDTO> phones);
+        Build phones(List<PhoneCoreDTO> phones);
     }
     
     public interface Build {
@@ -60,7 +62,8 @@ public class UserPersistenceDTO {
         Build modified(Instant modified);
         Build lastLogin(Instant lastLogin);
         Build isActive(boolean isActive);
-        UserPersistenceDTO build();
+        Build token(String token);
+        UserCoreDTO build();
     }
     
     public static class Builder implements Id, Name, Email, Password, Phones, Build {
@@ -68,11 +71,12 @@ public class UserPersistenceDTO {
         private String name;
         private String email;
         private String password;
-        private List<PhonePersistenceDTO> phones;
+        private List<PhoneCoreDTO> phones;
         private Instant created;
         private Instant modified;
         private Instant lastLogin;
         private boolean isActive;
+        private String token;
         
         private Builder() {}
         
@@ -101,7 +105,7 @@ public class UserPersistenceDTO {
         }
         
         @Override
-        public Build phones(List<PhonePersistenceDTO> phones) {
+        public Build phones(List<PhoneCoreDTO> phones) {
             this.phones = phones;
             return this;
         }
@@ -126,12 +130,17 @@ public class UserPersistenceDTO {
             return this;
         }
         
+        public Build token(String token) {
+            this.token = token;
+            return this;
+        }
+        
         @Override
-        public UserPersistenceDTO build() {
+        public UserCoreDTO build() {
             if (id == null || name == null || email == null || password == null || phones == null) {
                 throw new RequiredFieldsNotSetException();
             }
-            return new UserPersistenceDTO(this);
+            return new UserCoreDTO(this);
         }
     }
 }

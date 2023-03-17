@@ -4,7 +4,7 @@ import com.jonatlop.server.core.domain.entity.User;
 import com.jonatlop.server.core.domain.exception.UserInvalidCredentialsFormatException;
 import com.jonatlop.server.core.domain.exception.UserWithEmailAlreadyExistsException;
 import com.jonatlop.server.core.domain.mapper.UserMapper;
-import com.jonatlop.server.core.domain.persistence_dto.UserPersistenceDTO;
+import com.jonatlop.server.core.domain.core_dto.UserCoreDTO;
 import com.jonatlop.server.core.domain.query_dto.UserQueryDTO;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,11 +26,11 @@ public final class UserRegisterService implements UserRegisterInteractor {
         if (existsUserWithEmail(user)) {
             throw new UserWithEmailAlreadyExistsException();
         }
-        final UserPersistenceDTO userWithHashedPasswordDTO = UserMapper.toPersistenceDTOWithHashedPassword(
+        final UserCoreDTO userWithHashedPasswordDTO = UserMapper.toPersistenceDTOWithHashedPassword(
             user,
             hashPassword(user.getPassword())
         );
-        final UserPersistenceDTO createdUserDTO = persistUser(userWithHashedPasswordDTO);
+        final UserCoreDTO createdUserDTO = persistUser(userWithHashedPasswordDTO);
         return toOutputModel(createdUserDTO);
     }
     
@@ -48,18 +48,11 @@ public final class UserRegisterService implements UserRegisterInteractor {
         return passwordEncoder.encode(password);
     }
     
-    private UserPersistenceDTO persistUser(UserPersistenceDTO newUser) {
+    private UserCoreDTO persistUser( UserCoreDTO newUser) {
         return this.gateway.create(newUser);
     }
     
-    private UserRegisterOutputModel toOutputModel(UserPersistenceDTO dto) {
-        return UserRegisterOutputModel
-            .builder()
-            .id(dto.getId())
-            .created(dto.getCreated())
-            .modified(dto.getModified())
-            .lastLogin(dto.getLastLogin())
-            .isActive(dto.isActive())
-            .build();
+    private UserRegisterOutputModel toOutputModel(UserCoreDTO dto) {
+        return new UserRegisterOutputModel(dto);
     }
 }

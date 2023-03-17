@@ -1,4 +1,4 @@
-package com.jonatlop.server.core.application.user_register;
+package com.jonatlop.server.core.application.user_update_token;
 
 import com.jonatlop.server.core.domain.core_dto.UserCoreDTO;
 import lombok.AllArgsConstructor;
@@ -6,8 +6,8 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class UserRegisterOutputModel {
-    private final UserCoreDTO createdUser;
+public class UserUpdateTokenOutputModel {
+    private final UserCoreDTO updatedUser;
 }
 
 

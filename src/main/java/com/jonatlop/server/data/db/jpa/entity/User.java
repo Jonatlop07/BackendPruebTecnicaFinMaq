@@ -1,8 +1,7 @@
 package com.jonatlop.server.data.db.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.Instant;
 import java.util.List;
@@ -12,6 +11,8 @@ import java.util.UUID;
 @Table(name = "users")
 @Builder
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
     
     @Id
@@ -37,6 +38,9 @@ public class User {
     
     @Column(name = "is_active")
     private boolean isActive;
+    
+    @Column
+    private String token;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Phone> phones;

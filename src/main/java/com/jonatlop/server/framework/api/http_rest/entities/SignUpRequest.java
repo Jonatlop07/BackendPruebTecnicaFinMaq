@@ -1,7 +1,7 @@
 package com.jonatlop.server.framework.api.http_rest.entities;
 
 import com.jonatlop.server.core.application.user_register.UserRegisterInputModel;
-import com.jonatlop.server.core.domain.persistence_dto.PhonePersistenceDTO;
+import com.jonatlop.server.core.domain.core_dto.PhoneCoreDTO;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Value;
 
@@ -46,8 +46,8 @@ public class SignUpRequest {
         private final String cityCode;
         private final String countryCode;
     
-        public static PhonePersistenceDTO toDTO(Phone phone) {
-            return PhonePersistenceDTO
+        public static PhoneCoreDTO toDTO( Phone phone) {
+            return PhoneCoreDTO
                 .builder()
                 .number(phone.getNumber())
                 .cityCode(phone.getCityCode())
