@@ -2,9 +2,9 @@ package com.jonatlop.server.framework.api.http_rest.mapper;
 
 import com.jonatlop.server.core.application.user_register.UserRegisterOutputModel;
 import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
-import com.jonatlop.server.framework.api.http_rest.entities.common.ApiResponse;
-import com.jonatlop.server.framework.api.http_rest.entities.sign_up.UserRegisteredResponse;
-import com.jonatlop.server.framework.api.http_rest.entities.sign_up.SignUpResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.common.ApiResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.sign_up.UserRegisteredResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.sign_up.SignUpResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

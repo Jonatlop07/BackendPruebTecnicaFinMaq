@@ -1,9 +1,9 @@
-package com.jonatlop.server.framework.api.http_rest.entities.user_query;
+package com.jonatlop.server.framework.api.http_rest.entity.user_query;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.jonatlop.server.framework.api.http_rest.entities.common.ApiResponse;
-import com.jonatlop.server.framework.api.http_rest.entities.common.CompoundResponse;
-import com.jonatlop.server.framework.api.http_rest.entities.common.UserDetailsResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.common.ApiResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.common.CompoundResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.common.UserDetailsResponse;
 import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 

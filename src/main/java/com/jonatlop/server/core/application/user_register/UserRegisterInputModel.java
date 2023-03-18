@@ -23,27 +23,27 @@ public class UserRegisterInputModel {
         this.passwordFormatRegexp = builder.passwordFormatRegexp;
     }
     
-    public static RequiredName builder() {
+    public static Name builder() {
         return new Builder();
     }
     
-    public interface RequiredName {
-        RequiredEmail name(String name);
+    public interface Name {
+        Email name(String name);
     }
     
-    public interface RequiredEmail {
-        RequiredPassword email(String email);
+    public interface Email {
+        Password email(String email);
     }
     
-    public interface RequiredPassword {
-        RequiredPhones password(String password);
+    public interface Password {
+        Phones password(String password);
     }
     
-    public interface RequiredPhones {
-        RequiredPasswordFormatRegexp phones(List<PhoneCoreDTO> phones);
+    public interface Phones {
+        PasswordFormatRegexp phones(List<PhoneCoreDTO> phones);
     }
     
-    public interface RequiredPasswordFormatRegexp {
+    public interface PasswordFormatRegexp {
         Build passwordFormatRegexp(String passwordFormatRegexp);
     }
     
@@ -51,7 +51,7 @@ public class UserRegisterInputModel {
         UserRegisterInputModel build();
     }
     
-    public static class Builder implements RequiredName, RequiredEmail, RequiredPassword, RequiredPhones, RequiredPasswordFormatRegexp, Build {
+    public static class Builder implements Name, Email, Password, Phones, PasswordFormatRegexp, Build {
         private String name;
         private String email;
         private String password;
@@ -61,25 +61,25 @@ public class UserRegisterInputModel {
         private Builder() {}
         
         @Override
-        public RequiredEmail name(String name) {
+        public Email name(String name) {
             this.name = name;
             return this;
         }
         
         @Override
-        public RequiredPassword email(String email) {
+        public Password email(String email) {
             this.email = email;
             return this;
         }
         
         @Override
-        public RequiredPhones password(String password) {
+        public Phones password(String password) {
             this.password = password;
             return this;
         }
         
         @Override
-        public RequiredPasswordFormatRegexp phones(List<PhoneCoreDTO> phones) {
+        public PasswordFormatRegexp phones(List<PhoneCoreDTO> phones) {
             this.phones = phones;
             return this;
         }

@@ -1,8 +1,10 @@
-package com.jonatlop.server.framework.security.service;
+package com.jonatlop.server.framework.security.entity;
 
-import com.jonatlop.server.framework.security.entities.CurrentUser;
+import com.jonatlop.server.core.util.moment.GetCurrentInstantInteractor;
+import com.jonatlop.server.framework.security.entity.CurrentUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -13,15 +15,16 @@ import java.time.Instant;
 
 @Component
 @Slf4j
+@AllArgsConstructor
 public class JwtProvider {
-    @Value("${security.jwtSecret}")
-    private String jwtSecret;
+    private final String jwtSecret;
     
-    @Value("${security.jwtExpirationInMs}")
-    private int jwtExpirationInMs;
+    private final int jwtExpirationInMs;
+    
+    private final GetCurrentInstantInteractor currentInstantInteractor;
     
     public String generateToken(CurrentUser user) {
-        final Instant now = Instant.now();
+        final Instant now = currentInstantInteractor.execute(null);
         final Instant expiresAt = now.plusMillis(jwtExpirationInMs);
         return Jwts.builder()
             .setSubject(String.format("%s,%s", user.getId(), user.getEmail()))

@@ -25,7 +25,7 @@ public class User {
     
     public boolean hasValidEmail() {
         return Pattern
-            .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+            .compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")
             .matcher(this.email)
             .matches();
     }
@@ -42,7 +42,7 @@ public class User {
     }
     
     public interface Id {
-        Name id();
+        Name id(UUID id);
     }
     
     public interface Name {
@@ -73,8 +73,8 @@ public class User {
         private List<Phone> phones;
     
         @Override
-        public Name id() {
-            this.id = UUID.randomUUID();
+        public Name id(UUID id) {
+            this.id = id;
             return this;
         }
     

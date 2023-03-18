@@ -1,7 +1,7 @@
-package com.jonatlop.server.framework.api.http_rest.entities.sign_up;
+package com.jonatlop.server.framework.api.http_rest.entity.sign_up;
 
 import com.jonatlop.server.core.application.user_register.UserRegisterInputModel;
-import com.jonatlop.server.framework.api.http_rest.entities.common.PhoneResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.common.PhoneResponse;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Value;
 

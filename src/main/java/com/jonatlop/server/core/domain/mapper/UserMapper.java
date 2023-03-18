@@ -4,15 +4,16 @@ import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
 import com.jonatlop.server.core.application.user_register.UserRegisterInputModel;
 import com.jonatlop.server.core.domain.entity.User;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public final class UserMapper {
     private UserMapper() {}
     
-    public static User toEntity(UserRegisterInputModel input) {
+    public static User toEntity(UserRegisterInputModel input, UUID id) {
         return User
             .builder()
-            .id()
+            .id(id)
             .name(input.getName())
             .email(input.getEmail())
             .password(input.getPassword())
@@ -25,7 +26,7 @@ public final class UserMapper {
             .build();
     }
     
-    public static UserCoreDTO toPersistenceDTOWithHashedPassword( User user, String hashedPassword) {
+    public static UserCoreDTO toCoreDTOWithHashedPassword(User user, String hashedPassword) {
         return UserCoreDTO
             .builder()
             .id(user.getId())

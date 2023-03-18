@@ -1,8 +1,8 @@
 package com.jonatlop.server.framework.api.http_rest.exception;
 
 import com.jonatlop.server.core.abstraction.exception.CoreException;
-import com.jonatlop.server.framework.api.http_rest.entities.common.ApiResponse;
-import com.jonatlop.server.framework.api.http_rest.entities.common.CompoundResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.common.ApiResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.common.CompoundResponse;
 import com.jonatlop.server.framework.api.http_rest.mapper.HttpStatusMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

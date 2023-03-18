@@ -2,12 +2,14 @@ package com.jonatlop.server.core.domain.dto.details_dto;
 
 import com.jonatlop.server.core.abstraction.exception.RequiredFieldsNotSetException;
 import com.jonatlop.server.core.domain.dto.core_dto.PhoneCoreDTO;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.List;
 import java.util.UUID;
 
 @Getter
+@EqualsAndHashCode
 public class UserDetailsDTO {
     private final UUID id;
     private final String name;

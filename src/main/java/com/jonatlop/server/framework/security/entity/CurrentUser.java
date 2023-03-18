@@ -1,4 +1,4 @@
-package com.jonatlop.server.framework.security.entities;
+package com.jonatlop.server.framework.security.entity;
 
 import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
 import lombok.*;

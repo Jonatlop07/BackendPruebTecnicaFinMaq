@@ -1,6 +1,7 @@
 package com.jonatlop.server.core.domain.dto.core_dto;
 
 import com.jonatlop.server.core.abstraction.exception.RequiredFieldsNotSetException;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.time.Instant;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
+@EqualsAndHashCode
 public class UserCoreDTO {
     private final UUID id;
     private final String name;

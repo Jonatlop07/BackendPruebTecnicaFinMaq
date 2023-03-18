@@ -1,4 +1,4 @@
-package com.jonatlop.server.framework.api.http_rest.entities.sign_up;
+package com.jonatlop.server.framework.api.http_rest.entity.sign_up;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;

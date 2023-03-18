@@ -11,6 +11,7 @@ import java.util.UUID;
 @Table(name = "users")
 @Builder
 @Getter
+@EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {

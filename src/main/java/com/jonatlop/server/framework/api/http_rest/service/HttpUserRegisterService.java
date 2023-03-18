@@ -8,10 +8,10 @@ import com.jonatlop.server.core.application.user_update_token.UserUpdateTokenInp
 import com.jonatlop.server.core.application.user_update_token.UserUpdateTokenInteractor;
 import com.jonatlop.server.core.application.user_update_token.UserUpdateTokenOutputModel;
 import com.jonatlop.server.core.domain.dto.core_dto.UserCoreDTO;
-import com.jonatlop.server.framework.security.entities.AuthGenerateTokenInputModel;
-import com.jonatlop.server.framework.security.entities.AuthGenerateTokenOutputModel;
-import com.jonatlop.server.framework.security.entities.CurrentUser;
-import com.jonatlop.server.framework.security.service.AuthGenerateTokenService;
+import com.jonatlop.server.framework.security.service.auth_generate_token.AuthGenerateTokenInputModel;
+import com.jonatlop.server.framework.security.service.auth_generate_token.AuthGenerateTokenOutputModel;
+import com.jonatlop.server.framework.security.entity.CurrentUser;
+import com.jonatlop.server.framework.security.service.auth_generate_token.AuthGenerateJwtTokenService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class HttpUserRegisterService implements UserRegisterInteractor {
     private final UserRegisterService userRegisterService;
-    private final AuthGenerateTokenService authGenerateTokenService;
+    private final AuthGenerateJwtTokenService authGenerateJwtTokenService;
     private final UserUpdateTokenInteractor userUpdateTokenInteractor;
     
     @Override
@@ -29,7 +29,7 @@ public class HttpUserRegisterService implements UserRegisterInteractor {
         final UserRegisterOutputModel userRegisterOutputModel = userRegisterService.execute(input);
         final UserCoreDTO createdUser = userRegisterOutputModel.getCreatedUser();
         final CurrentUser currentUser = CurrentUser.from(createdUser);
-        final AuthGenerateTokenOutputModel authGenerateTokenOutputModel = authGenerateTokenService.execute(
+        final AuthGenerateTokenOutputModel authGenerateTokenOutputModel = authGenerateJwtTokenService.execute(
             new AuthGenerateTokenInputModel(currentUser)
         );
         final UserUpdateTokenOutputModel userUpdateTokenOutputModel = userUpdateTokenInteractor.execute(

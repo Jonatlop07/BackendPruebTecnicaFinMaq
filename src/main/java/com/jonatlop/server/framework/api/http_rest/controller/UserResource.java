@@ -1,8 +1,8 @@
 package com.jonatlop.server.framework.api.http_rest.controller;
 
-import com.jonatlop.server.framework.api.http_rest.entities.sign_up.SignUpRequest;
-import com.jonatlop.server.framework.api.http_rest.entities.sign_up.SignUpResponse;
-import com.jonatlop.server.framework.api.http_rest.entities.user_query.UserQueryResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.sign_up.SignUpRequest;
+import com.jonatlop.server.framework.api.http_rest.entity.sign_up.SignUpResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.user_query.UserQueryResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;

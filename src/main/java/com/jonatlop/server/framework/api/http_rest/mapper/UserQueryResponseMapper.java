@@ -1,9 +1,9 @@
 package com.jonatlop.server.framework.api.http_rest.mapper;
 
 import com.jonatlop.server.core.application.user_query.UserQueryOutputModel;
-import com.jonatlop.server.framework.api.http_rest.entities.common.ApiResponse;
-import com.jonatlop.server.framework.api.http_rest.entities.common.UserDetailsResponse;
-import com.jonatlop.server.framework.api.http_rest.entities.user_query.UserQueryResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.common.ApiResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.common.UserDetailsResponse;
+import com.jonatlop.server.framework.api.http_rest.entity.user_query.UserQueryResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

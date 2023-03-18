@@ -1,16 +1,13 @@
-package com.jonatlop.server.framework.security.service;
+package com.jonatlop.server.framework.security.service.auth_generate_token;
 
 import com.jonatlop.server.core.abstraction.interactor.Interactor;
-import com.jonatlop.server.framework.security.entities.AuthGenerateTokenInputModel;
-import com.jonatlop.server.framework.security.entities.AuthGenerateTokenOutputModel;
+import com.jonatlop.server.framework.security.entity.JwtProvider;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AuthGenerateTokenService implements Interactor<AuthGenerateTokenInputModel, AuthGenerateTokenOutputModel> {
-    @Autowired
+public class AuthGenerateJwtTokenService implements Interactor<AuthGenerateTokenInputModel, AuthGenerateTokenOutputModel> {
     private JwtProvider jwtProvider;
     
     @Override

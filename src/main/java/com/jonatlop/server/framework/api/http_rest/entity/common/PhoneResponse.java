@@ -1,4 +1,4 @@
-package com.jonatlop.server.framework.api.http_rest.entities.common;
+package com.jonatlop.server.framework.api.http_rest.entity.common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jonatlop.server.core.domain.dto.core_dto.PhoneCoreDTO;
