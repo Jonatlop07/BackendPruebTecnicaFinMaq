@@ -1,7 +1,12 @@
 package com.jonatlop.server.core.application.user_query;
 
 import com.jonatlop.server.core.abstraction.exception.QueryFieldsNotSetException;
+import com.jonatlop.server.core.domain.dto.details_dto.UserDetailsDTO;
 import lombok.AllArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -13,10 +18,22 @@ public class UserQueryService implements UserQueryInteractor {
         if (areQueryFieldsNotSet(input)) {
             throw new QueryFieldsNotSetException();
         }
+        Optional<UserDetailsDTO> userById = Optional.empty();
+        Optional<UserDetailsDTO> userByEmail = Optional.empty();
+        List<UserDetailsDTO> usersByName = new ArrayList<>();
+        if (isIdSet(input.getId())) {
+            userById = gateway.queryById(input.getId());
+        }
+        if (isEmailSet(input.getEmail())) {
+            userByEmail = gateway.queryByEmail(input.getEmail());
+        }
+        if (isNameSet(input.getName())) {
+            usersByName = gateway.queryByName(input.getName());
+        }
         return UserQueryOutputModel.builder()
-            .userById(gateway.queryById(input.getId()))
-            .userByEmail(gateway.queryByEmail(input.getEmail()))
-            .usersByName(gateway.queryByName(input.getName()))
+            .userById(userById)
+            .userByEmail(userByEmail)
+            .usersByName(usersByName)
             .build();
     }
     
