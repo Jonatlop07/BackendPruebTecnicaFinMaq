@@ -12,7 +12,6 @@ import com.jonatlop.server.core.domain.mapper.PhoneMapper;
 import com.jonatlop.server.core.domain.mapper.UserMapper;
 import com.jonatlop.server.framework.security.service.hash_password.HashPasswordInteractor;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
