@@ -2,6 +2,8 @@
 
 ## Requisitos para ejecutar la aplicación:
 
+- Clonar el repositorio: `https://github.com/Jonatlop07/BackendPruebTecnicaFinMaq.git`
+- Hacer `cd` al directorio raíz del proyecto
 - **Ejecución con Docker Compose (Recomendada)**: Tener instalado Docker, Docker Compose y el programa necesario para ejecutar Docker (DockerDesktop, Minikube, entre otros).
 - **Ejecución con Maven**: Tener una versión eciente del plugin de Maven y Java JDK versión 19 (como versión por defecto de Java).
 
