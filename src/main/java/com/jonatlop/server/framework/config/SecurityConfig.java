@@ -1,5 +1,6 @@
 package com.jonatlop.server.framework.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,16 +14,17 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, @Value("${origin.url}") String originUrl) throws Exception {
+        return http
+            .csrf().disable()
             .cors().configurationSource(request -> {
                 CorsConfiguration corsConfiguration = new CorsConfiguration();
-                corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
+                corsConfiguration.setAllowedOrigins(List.of(originUrl));
                 corsConfiguration.setAllowedMethods(List.of("GET", "POST"));
                 corsConfiguration.setAllowedHeaders(List.of("*"));
                 return corsConfiguration;
-            });
-        http.csrf().disable();
-        return http.build();
+            })
+            .and()
+            .build();
     }
 }

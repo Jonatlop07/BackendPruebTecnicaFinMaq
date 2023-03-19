@@ -1,0 +1,12 @@
+version: "3.6"
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: jonatlop07/finmaq-prueba-backend:latest
+    container_name: finmaq-prueba-backend
+    ports:
+      - "8090:8090"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t

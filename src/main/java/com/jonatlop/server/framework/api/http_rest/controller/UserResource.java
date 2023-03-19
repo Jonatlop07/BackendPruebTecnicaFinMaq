@@ -14,7 +14,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-@RequestMapping(path = "/api/v1/user")
+@RequestMapping(path = "/user")
 public interface UserResource {
     
     @PostMapping
